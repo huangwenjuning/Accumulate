@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27 - 嵌套分组不记录组</title>
+</head>
+<body>
+    <h2>在原子组中使用 ?: ，在 match 匹配时，不记录组结果</h2>
+    <div style="margin-bottom: 16px;">匹配字符： https://www.agangxuezhang.cn/single-minded</div>
+    <button onclick="record()" id='record'>记录组</button>
+    <button onclick="unRecord()" id='un-record'>不记录组</button>
+    <h3>输出结果：<div id='content'></div></h3>
+    
+    <script>
+        let str = `
+            https://www.agangxuezhang.cn/single-minded
+        `;
+        let reg = /https?:\/\/(\w+\.\w+\.(com|org|cn))/i;
+        let reg1 = /https?:\/\/(\w+\.\w+\.(?:com|org|cn))/i;
+        let content = document.getElementById('content');
+
+        function record() {
+            // 使用match时，如果匹配到会返回一个数组，数组第 0 项保存的是匹配到的所有字符，第 1、2....项是原子组匹配到的内容
+            content.innerHTML = JSON.stringify(str.match(reg), null, 2);
+        }
+
+        function unRecord() {
+            // 使用?:可以将当前原子组忽略，不出现在match结果中
+            content.innerHTML = JSON.stringify(str.match(reg1), null, 2);  
+        }
+    </script>
+</body>
+</html>

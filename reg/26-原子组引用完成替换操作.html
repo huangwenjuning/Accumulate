@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26-原子组引用完成替换操作</title>
+</head>
+<body>
+    将<div style="color: red">
+        url('./images/index.png')
+    </div>替换成
+    <div style="color: green">
+        url(require('./images/index.png'))
+    </div>
+    <div>使用： str.replace(reg, 'require($1)')</div>
+    <div>
+        使用原子组时，可以使用$1、$2.. $(原子组数) 来取出匹配的原子组内容
+    </div>
+    <script>
+        let str = `
+            background: url('./images/index.png')
+            background: url('./images/index.xxx')
+        `;
+        let reg = /url\((.+?)\)/g;
+    </script>
+</body>
+</html>
