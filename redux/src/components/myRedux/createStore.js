@@ -18,7 +18,7 @@ export const createStore = (reducer, enhancer) => {
   };
 
   const dispatch = (action) => {
-    state = reducer({ action, state });
+    state = reducer(state, action);
     listeners.forEach((listener) => listener());
     return action;
   };

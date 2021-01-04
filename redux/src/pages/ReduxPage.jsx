@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { store } from './store.js';
+import { store } from '../store.js';
 
-export default class StorePage extends Component {
+export default class ReduxPage extends Component {
   onAdd = () => {
     store.dispatch({type: 'ADD'});
   }
@@ -31,7 +31,8 @@ export default class StorePage extends Component {
   render() {
     return (
       <div>
-        <h2>{store.getState()}</h2>
+        <h1>Redux</h1>
+        <h2>{store.getState().count}</h2>
         <div style={{ margin: 8 }}>
           <button onClick={() => { this.onAdd() }}>增加:</button>
         </div>

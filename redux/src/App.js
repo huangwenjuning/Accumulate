@@ -1,12 +1,20 @@
 import React, {Component} from "react";
-import StorePage from './storePage.jsx';
+import ReduxPage from './pages/ReduxPage.jsx';
+import ReactReduxPage from './pages/ReactReduxPage.jsx';
+import { ReactHookReduxPage } from './pages/ReactHookReduxPage.jsx';
+import { Provider } from 'react-redux';
+import { store } from './store.js';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <StorePage />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <ReduxPage />
+          <ReactReduxPage />
+          <ReactHookReduxPage />
+        </div>
+      </Provider>
     );
   }
 }
