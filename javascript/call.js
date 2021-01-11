@@ -26,7 +26,7 @@ function sum (c, d) {
 }
 
 const obj = {
-  name: 'wuzhigang',
+  name: 'Lily',
   age: 18
 }
 

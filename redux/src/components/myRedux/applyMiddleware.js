@@ -9,6 +9,7 @@ export const applyMiddleware = (...middlewares) => {
     const middlewareChain = middlewares.map((mid) => mid(midApi));
     dispatch = compose(...middlewareChain)(dispatch);
     console.log(dispatch, 'dispatch');
+    console.log(JSON.stringify(dispatch, null, 2), 'dispatch');
     return {
       ...store,
       dispatch,
