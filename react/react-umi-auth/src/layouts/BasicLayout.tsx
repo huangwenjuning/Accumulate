@@ -17,8 +17,8 @@ import { Result, Button } from 'antd';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import type { ConnectState } from '@/models/connect';
-import { getMatchMenu } from '@umijs/route-utils';
 import logo from '../assets/logo.svg';
+import { getMatchPathConfig } from '@/utils/utils';
 
 const noMatch = (
   <Result
@@ -109,14 +109,17 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
       });
     }
   };
-  // get children authority
-  const authorized = useMemo(
-    () =>
-      getMatchMenu(location.pathname || '/', menuDataRef.current).pop() || {
-        authority: undefined,
-      },
-    [location.pathname],
-  );
+
+
+    // get children authority
+    const authorized = useMemo(
+      () =>
+        getMatchPathConfig(
+          location.pathname,
+          props.route.routes as MenuDataItem[],
+        ),
+      [location.pathname, props.route.routes],
+    );
 
   const { formatMessage } = useIntl();
 
