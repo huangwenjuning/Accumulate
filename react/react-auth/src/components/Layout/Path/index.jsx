@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { Layout } from 'antd';
 import { SideMenu } from './SideMenu';
 import { Main } from './Main';
-import './style.css';
+import '../style.css';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-export const LayoutView = () => {
+export const LayoutPathView = () => {
   useEffect(() => {
-    const permissions = ['management.headmasters', 'management.teachers', 'task.chinese', 'task.math', 'task.other', 'task.other.add', 'task.other.edit'];
-    localStorage.setItem('permission_keys', JSON.stringify(permissions));
+    const permissions = ['management.headmasters', 'management.teachers'];
+    localStorage.setItem('permission_path_keys', JSON.stringify(permissions));
   }, []);
 
   return (

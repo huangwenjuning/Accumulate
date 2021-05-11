@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
-import { LayoutView } from './components/Layout';
+import { LayoutHocView } from './components/Layout/Hoc';
+// import { LayoutPathView } from './components/Layout/Path';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
-ReactDOM.render(<Router><LayoutView /></Router>, document.getElementById('root'));
+// 高阶组件控制权限
+ReactDOM.render(<Router><LayoutHocView /></Router>, document.getElementById('root'));
+// 根据路由控制权限
+// ReactDOM.render(<Router><LayoutPathView /></Router>, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

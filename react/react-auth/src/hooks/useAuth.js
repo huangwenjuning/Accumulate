@@ -21,7 +21,8 @@ export const useAuth = (code, ...values) => {
     const optionsMap = {
       'management.headmasters': ['management.headmasters.add', 'management.headmasters.delete'],
       'management.teachers': ['management.teachers.add', 'management.teachers.delete'],
-      'task.chinese': ['task.chinese.add', 'task.chinese.edit']
+      'task.chinese': ['task.chinese.add', 'task.chinese.edit'],
+      'task.other': ['task.other.add', 'task.other.edit', 'task.other.delete'],
     };
 
     // 3. 如果传入操作控制 code[], 则使用传入 code[], 否则读取权限操作表数据

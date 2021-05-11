@@ -5,7 +5,7 @@ const Teachers = lazy(() => import('./pages/management/Teachers'));
 const Students = lazy(() => import('./pages/management/Students'));
 const Math = lazy(() => import('./pages/task/Math'));
 const English = lazy(() => import('./pages/task/English'));
-const Other = lazy(() => import('./pages/task/Other'));
+const Other = lazy(() => import('./pages/task/Other/index'));
 const Chinese = lazy(() => import('./pages/task/Chinese'));
 const NotFound = lazy(() => import('./404'));
 const NoAuth = lazy(() => import('./403'));

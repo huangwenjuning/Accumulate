@@ -2,8 +2,6 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import NoAuth from '../../403';
 
-
-
 export const WithAuth = (code, ...values) => (WrappedComponent) => (
   props
 ) => {

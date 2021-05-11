@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from "react-router-dom"
-import { routes } from '../../routes';
-import { flatTreeData } from '../../utils';
+import { routes } from '../../../routes';
+import { flatTreeData } from '../../../utils';
 import { Spin } from 'antd';
 import { compile } from 'path-to-regexp';
 
@@ -41,21 +41,18 @@ const renderRoute = (flatRoutes, key) => {
     />
   ));
 };
+const permissions = JSON.parse(localStorage.getItem('permission_path_keys'));
 
 export const Main = () => {
   const routeList = [];
   flatTreeData(routes, routeList);
-  const permissions = ['management.headmasters', 'management.teachers'];
   const authRoutes = routeList?.filter((route) => !route.authority || permissions.includes(route.authority));
   const noAuthRoutes = routeList?.filter((route) => route.authority && !permissions.includes(route.authority));
 
   return (
     <Switch>
-      {/* 高阶组件权限控制 */}
-      {renderRoute(routeList)}
-      {/* 路由权限控制 */}
-      {/* {renderRoute(authRoutes)} */}
-      {/* {renderRoute(noAuthRoutes, NO_AUTH)} */}
+      {renderRoute(authRoutes)}
+      {renderRoute(noAuthRoutes, NO_AUTH)}
       <Route key="not-found" path="*" redirect="/404" />
     </Switch>
   );
