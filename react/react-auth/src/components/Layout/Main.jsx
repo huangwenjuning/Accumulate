@@ -49,13 +49,13 @@ export const Main = () => {
   const authRoutes = routeList?.filter((route) => !route.authority || permissions.includes(route.authority));
   const noAuthRoutes = routeList?.filter((route) => route.authority && !permissions.includes(route.authority));
 
-  console.log(noAuthRoutes, 'noAuthRoutes');
-  console.log(authRoutes, 'authRoutes');
-
   return (
     <Switch>
-      {renderRoute(authRoutes)}
-      {renderRoute(noAuthRoutes, NO_AUTH)}
+      {/* 高阶组件权限控制 */}
+      {renderRoute(routeList)}
+      {/* 路由权限控制 */}
+      {/* {renderRoute(authRoutes)} */}
+      {/* {renderRoute(noAuthRoutes, NO_AUTH)} */}
       <Route key="not-found" path="*" redirect="/404" />
     </Switch>
   );

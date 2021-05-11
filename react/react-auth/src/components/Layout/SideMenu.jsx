@@ -4,9 +4,14 @@ import { routes } from '../../routes';
 import { Link } from "react-router-dom"
 
 const { SubMenu } = Menu;
-const permissions = ['management.headmasters', 'management.teachers'];
+// 权限控制高阶组件demo
+const permissions = JSON.parse(localStorage.getItem('permission_keys'));
+// 路由控制demo
+// const permissions = ['management.headmasters', 'management.teachers'];
 
 const renderRoutes = (route) => route?.map((item) => {
+  if (item.hideInMenu) { return null }
+  
   let parentHasPermission = true;
   if (item.authority && item.children) {
     parentHasPermission = item.authority.some((key) => permissions.includes(key));

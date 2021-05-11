@@ -5,6 +5,7 @@ const Teachers = lazy(() => import('./pages/management/Teachers'));
 const Students = lazy(() => import('./pages/management/Students'));
 const Math = lazy(() => import('./pages/task/Math'));
 const English = lazy(() => import('./pages/task/English'));
+const Other = lazy(() => import('./pages/task/Other'));
 const Chinese = lazy(() => import('./pages/task/Chinese'));
 const NotFound = lazy(() => import('./404'));
 const NoAuth = lazy(() => import('./403'));
@@ -65,7 +66,7 @@ export const routes = [
     name: '作业管理',
     redirect: '/task/chinese',
     exact: true,
-    authority: ['task.chinese', 'task.math', 'task.english'],
+    authority: ['task.chinese', 'task.math', 'task.english', 'task.other'],
     children: [
       {
         path: '/task/chinese',
@@ -73,6 +74,7 @@ export const routes = [
         exact: true, 
         component: Chinese,
         authority: 'task.chinese',
+        optionsAuthority: ['task.chinese.add', 'task.chinese.edit']
       },
       {
         path: '/task/math',
@@ -87,15 +89,25 @@ export const routes = [
         exact: true, 
         component: English,
         authority: 'task.english',
+      },
+      {
+        path: '/task/other',
+        name: '其他 - 测试权限控制高阶组件',
+        exact: true, 
+        component: Other,
+        authority: 'task.other',
+        optionsAuthority: ['task.other.add', 'task.other.edit', 'task.other.delete']
       }
     ] 
   },
   {
     path: '/403',
     component: NoAuth,
+    hideInMenu: true,
   },
   {
     path: '/404',
     component: NotFound,
+    hideInMenu: true,
   },
 ];
