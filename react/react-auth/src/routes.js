@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { addAuthority, getOptionsMapData } from './utils/auth';
 
 const HeadMaster = lazy(() => import('./pages/management/HeadMaster'));
 const Teachers = lazy(() => import('./pages/management/Teachers'));
@@ -10,30 +11,19 @@ const Chinese = lazy(() => import('./pages/task/Chinese'));
 const NotFound = lazy(() => import('./404'));
 const NoAuth = lazy(() => import('./403'));
 
+
 /**
- * @authority 菜单权限 code - 可配置多个，只有配置的所有 code 都匹配时，才认为当前页面可访问
- * eg. 
- *  路由配置：
- *  {
- *      path: '/management/headmasters',
- *      name: '校长信息',
- *      exact: true, 
- *      component: Teachers,
- *      authority: ['management.headmasters', 'management.headmasters.add'],
- *  }
- *  用户拥有权限：permission: ['management.headmasters', 'management.teachers']
- *  用户权限'management.headmasters'只能匹配到 authority 配置中的一项，因此该用户不具有校长信息页面的访问权限
+ * @authority 菜单权限 code
  * @optionsAuthority 操作权限 code
  * 
  */
-
-export const routes = [
+const routes = [
   {
     path: '/management',
     name: '信息管理',
     redirect: '/management/headmasters',
     exact: true,
-    authority: ['management.headmasters', 'management.teachers', 'management.students'],
+    // authority: ['management.headmasters', 'management.teachers', 'management.students'],
     children: [
       {
         path: '/management/headmasters',
@@ -66,7 +56,7 @@ export const routes = [
     name: '作业管理',
     redirect: '/task/chinese',
     exact: true,
-    authority: ['task.chinese', 'task.math', 'task.english', 'task.other'],
+    // authority: ['task.chinese', 'task.math', 'task.english', 'task.other'],
     children: [
       {
         path: '/task/chinese',
@@ -111,3 +101,8 @@ export const routes = [
     hideInMenu: true,
   },
 ];
+
+addAuthority(routes);
+
+export const optionsMap = getOptionsMapData(routes);
+export { routes }

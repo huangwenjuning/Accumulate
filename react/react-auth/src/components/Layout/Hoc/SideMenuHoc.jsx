@@ -12,7 +12,7 @@ const renderRoutes = (route) => route?.map((item) => {
   
   let parentHasPermission = true;
   if (item.authority && item.children) {
-    parentHasPermission = item.authority.some((key) => permissions.includes(key));
+    parentHasPermission = item.authority.some((key) => permissions?.includes(key));
   }
 
   if (!parentHasPermission) {

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from "react-router-dom"
 import { routes } from '../../../routes';
-import { flatTreeData } from '../../../utils';
+import { flatTreeData } from '../../../utils/auth';
 import { Spin } from 'antd';
 import { compile } from 'path-to-regexp';
 
